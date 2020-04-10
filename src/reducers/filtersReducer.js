@@ -2,8 +2,8 @@ import moment from "moment";
 
 const defaultFilters = {
   text: "",
-  startDate: moment().startOf("month"),
-  endDate: moment().endOf("month"),
+  startDate: undefined,
+  endDate: undefined,
 };
 
 const filtersReducer = (state = defaultFilters, action) => {

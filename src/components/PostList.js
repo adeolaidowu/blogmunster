@@ -1,0 +1,18 @@
+import React from "react";
+import { connect } from "react-redux";
+import PostListItem from "./PostListItem";
+import getVisiblePosts from "../selectors/visiblePosts";
+
+const PostList = (props) => (
+  <div>
+    {props.posts.map((post) => (
+      <PostListItem {...post} key={post.id} />
+    ))}
+  </div>
+);
+
+const mapStateToProps = (state) => ({
+  posts: getVisiblePosts(state.posts, state.filters),
+});
+
+export default connect(mapStateToProps)(PostList);
