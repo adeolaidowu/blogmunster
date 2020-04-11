@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const defaultFilters = {
   text: "",
   startDate: undefined,

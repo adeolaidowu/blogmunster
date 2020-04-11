@@ -9,14 +9,22 @@ import AddPost from "../components/AddPost";
 import EditPost from "../components/EditPost";
 import PostItemPage from "../components/PostItemPage";
 import NotFoundPage from "../components/NotFoundPage";
+import moment from "moment";
 
 const store = configureStore();
-store.dispatch(addPost({ title: "my test post", content: "blah blah blah" }));
+store.dispatch(
+  addPost({
+    title: "my test post",
+    content: "blah blah blah",
+    createdAt: moment().valueOf(),
+  })
+);
 store.dispatch(
   addPost({
     title: "This is post two",
     content:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis ratione, laborum cum architecto laudantium similique mollitia voluptas sequi maxime ducimus ipsum hic quidem commodi nemo nobis alias cumque. Delectus, aperiam.",
+    createdAt: moment().subtract(2, "days").valueOf(),
   })
 );
 store.dispatch(
@@ -24,6 +32,7 @@ store.dispatch(
     title: "This is post three",
     content:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis ratione, laborum cum architecto laudantium similique mollitia voluptas sequi maxime ducimus ipsum hic quidem commodi nemo nobis alias cumque. Delectus, aperiam.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis ratione, laborum cum architecto laudantium similique mollitia voluptas sequi maxime ducimus ipsum hic quidem commodi nemo nobis alias cumque. Delectus, aperiam.",
+    createdAt: moment().add(4, "days").valueOf(),
   })
 );
 console.log(store.getState());
