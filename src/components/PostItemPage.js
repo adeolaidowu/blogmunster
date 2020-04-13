@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const PostItemPage = (props) => {
+export const PostItemPage = (props) => {
   return (
     <div>
       <Link to="/">Go back</Link>

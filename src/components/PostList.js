@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PostListItem from "./PostListItem";
 import getVisiblePosts from "../selectors/visiblePosts";
 
-const PostList = (props) => (
+export const PostList = (props) => (
   <div>
     {props.posts.map((post) => (
       <PostListItem {...post} key={post.id} />

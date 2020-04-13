@@ -5,8 +5,8 @@ import configureStore from "../store/configureStore";
 import { addPost } from "../actions/posts";
 import Homepage from "../components/Homepage";
 import Dashboard from "../components/Dashboard";
-import AddPost from "../components/AddPost";
-import EditPost from "../components/EditPost";
+import AddPostPage from "../components/AddPostPage";
+import EditPostPage from "../components/EditPostPage";
 import PostItemPage from "../components/PostItemPage";
 import NotFoundPage from "../components/NotFoundPage";
 import moment from "moment";
@@ -42,9 +42,9 @@ const AppRouter = () => (
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/create" component={AddPost} />
+        <Route path="/create" component={AddPostPage} />
         <Route path="/post/:id" component={PostItemPage} />
-        <Route path="/edit/:id" component={EditPost} />
+        <Route path="/edit/:id" component={EditPostPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </BrowserRouter>

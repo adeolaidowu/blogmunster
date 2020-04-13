@@ -3,17 +3,21 @@ import { connect } from "react-redux";
 import PostForm from "./PostForm";
 import { addPost } from "../actions/posts";
 
-const AddPost = (props) => {
+export const AddPostPage = (props) => {
   const onSubmit = (post) => {
-    console.log(post);
-    props.dispatch(addPost(post));
+    props.addPost(post);
     props.history.push("/");
   };
   return (
     <div>
+      <h1>Create Blog Post</h1>
       <PostForm onSubmit={onSubmit} />
     </div>
   );
 };
 
-export default connect()(AddPost);
+const mapDispatchToProps = (dispatch) => ({
+  addPost: (post) => dispatch(addPost(post)),
+});
+
+export default connect(undefined, mapDispatchToProps)(AddPostPage);

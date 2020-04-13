@@ -4,18 +4,17 @@ import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
 import { setTextFilter, setStartDate, setEndDate } from "../actions/filters";
 
-class PostFilters extends Component {
+export class PostFilters extends Component {
   state = {
     calendarFocused: null,
   };
 
   handleTextChange = (e) => {
-    this.props.dispatch(setTextFilter(e.target.value));
+    this.props.setTextFilter(e.target.value);
   };
   handleDatesChange = ({ startDate, endDate }) => {
-    console.log(this.props);
-    this.props.dispatch(setStartDate(startDate));
-    this.props.dispatch(setEndDate(endDate));
+    this.props.setStartDate(startDate);
+    this.props.setEndDate(endDate);
   };
 
   handleFocusChange = (calendarFocused) => {
@@ -53,4 +52,10 @@ const mapStateToProps = (state) => ({
   filters: state.filters,
 });
 
-export default connect(mapStateToProps)(PostFilters);
+const mapDispatchToProps = (dispatch) => ({
+  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+  setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostFilters);
