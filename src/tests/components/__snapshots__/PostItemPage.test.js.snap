@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render component 1`] = `
+<div>
+  <Link
+    to="/"
+  >
+    Go back
+  </Link>
+  <h1>
+    javascript
+  </h1>
+  <p>
+    about javascript
+  </p>
+  <small>
+    0
+  </small>
+</div>
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render component 1`] = `
+<div>
+  <PostListItem
+    content="about javascript"
+    createdAt={0}
+    id="1"
+    key="1"
+    title="javascript"
+  />
+  <PostListItem
+    content="about anime"
+    createdAt={-259200000}
+    id="2"
+    key="2"
+    title="anime"
+  />
+  <PostListItem
+    content="about vue"
+    createdAt={259200000}
+    id="3"
+    key="3"
+    title="vue"
+  />
+</div>
+`;

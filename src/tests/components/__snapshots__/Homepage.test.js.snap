@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render homepage correctly 1`] = `
+<div>
+  <h1>
+    Welcome to BlogMunster
+  </h1>
+  <Connect(PostFilters) />
+  <Connect(PostList) />
+</div>
+`;

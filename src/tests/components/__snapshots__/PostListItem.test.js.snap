@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render component 1`] = `
+<div>
+  <h2>
+    <Link
+      to="/edit/2"
+    >
+      anime
+    </Link>
+  </h2>
+  <p>
+    about anime
+  </p>
+  <small>
+    -259200000
+  </small>
+</div>
+`;

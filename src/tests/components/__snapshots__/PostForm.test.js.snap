@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render component with post prop 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    id="title"
+    onChange={[Function]}
+    placeholder="Post title"
+    type="text"
+    value="anime"
+  />
+  <textarea
+    id="content"
+    onChange={[Function]}
+    placeholder="Post content"
+    value="about anime"
+  />
+  <button>
+    Post
+  </button>
+</form>
+`;
+
+exports[`should render correctly with no post prop 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    id="title"
+    onChange={[Function]}
+    placeholder="Post title"
+    type="text"
+    value=""
+  />
+  <textarea
+    id="content"
+    onChange={[Function]}
+    placeholder="Post content"
+    value=""
+  />
+  <button>
+    Post
+  </button>
+</form>
+`;
+
+exports[`should render error on submit of empty form 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <p>
+    Please provide title and content
+  </p>
+  <input
+    id="title"
+    onChange={[Function]}
+    placeholder="Post title"
+    type="text"
+    value=""
+  />
+  <textarea
+    id="content"
+    onChange={[Function]}
+    placeholder="Post content"
+    value=""
+  />
+  <button>
+    Post
+  </button>
+</form>
+`;
