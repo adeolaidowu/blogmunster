@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import PostForm from "./PostForm";
-import { editPost, deletePost } from "../actions/posts";
+import { startEditPost, startDeletePost } from "../actions/posts";
 
 export const EditPostPage = (props) => {
   const onSubmit = (post) => {
-    props.editPost(props.post.id, post);
+    props.startEditPost(props.post.id, post);
     props.history.push("/");
   };
   const onDelete = () => {
-    props.deletePost({ id: props.post.id });
+    props.startDeletePost({ id: props.post.id });
     props.history.push("/");
   };
   return (
@@ -25,8 +25,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  editPost: (id, updates) => dispatch(editPost(id, updates)),
-  deletePost: (data) => dispatch(deletePost(data)),
+  startEditPost: (id, updates) => dispatch(startEditPost(id, updates)),
+  startDeletePost: (data) => dispatch(startDeletePost(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);

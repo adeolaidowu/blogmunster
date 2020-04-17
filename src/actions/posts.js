@@ -36,13 +36,31 @@ export const editPost = (id, updates) => ({
   updates,
 });
 
+export const startEditPost = (id, updates) => {
+  return (dispatch) => {
+    dispatch(editPost(id, updates));
+    database.ref(`posts/${id}`).update(updates);
+  };
+};
+
 //DELETE_POST
 export const deletePost = ({ id } = {}) => ({
   type: "DELETE_POST",
   id,
 });
 
-//SET_POSTS
+export const startDeletePost = ({ id } = {}) => {
+  return (dispatch) => {
+    database
+      .ref(`posts/${id}`)
+      .remove()
+      .then(() => {
+        dispatch(deletePost({ id }));
+      });
+  };
+};
+
+//SET_POSTS -- This action fetches data from db to display when page is visited
 export const setPosts = (posts) => ({
   type: "SET_POSTS",
   posts,

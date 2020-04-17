@@ -12,8 +12,8 @@ beforeEach(() => {
   historySpy = { push: jest.fn() };
   wrapper = shallow(
     <EditPostPage
-      editPost={editPostSpy}
-      deletePost={deletePostSpy}
+      startEditPost={editPostSpy}
+      startDeletePost={deletePostSpy}
       history={historySpy}
       post={posts[2]}
     />
