@@ -44,3 +44,12 @@ test("should edit post in state", () => {
   const state = postsReducer(posts, action);
   expect(state[1].title).toBe(title);
 });
+
+test("should set posts to state", () => {
+  const action = {
+    type: "SET_POSTS",
+    posts: posts[0],
+  };
+  const state = postsReducer(posts, action);
+  expect(state).toEqual(posts[0]);
+});

@@ -41,3 +41,27 @@ export const deletePost = ({ id } = {}) => ({
   type: "DELETE_POST",
   id,
 });
+
+//SET_POSTS
+export const setPosts = (posts) => ({
+  type: "SET_POSTS",
+  posts,
+});
+
+export const startSetPosts = () => {
+  return (dispatch) => {
+    return database
+      .ref("posts")
+      .once("value")
+      .then((snapshot) => {
+        const posts = [];
+        snapshot.forEach((childSnapshot) => {
+          posts.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val(),
+          });
+        });
+        dispatch(setPosts(posts));
+      });
+  };
+};

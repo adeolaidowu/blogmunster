@@ -1,9 +1,4 @@
-import {
-  startAddPost,
-  addPost,
-  editPost,
-  deletePost,
-} from "../../actions/posts";
+import { addPost, editPost, deletePost, setPosts } from "../../actions/posts";
 import configureMockStore from "redux-mock-store";
 //import database from "../../firebase/firebase";
 import thunk from "redux-thunk";
@@ -38,59 +33,68 @@ test("should set up add post action object with provided values", () => {
     post: posts[1],
   });
 });
-// testing async actions
-test("should add post to database and store", (done) => {
-  const store = mockStore({});
-  const postData = {
-    title: "i hate writing tests",
-    content:
-      "writing tests for async actions is especially complex and annoying",
-    imageLink: "https://unsplash.com/random",
-    createdAt: 1459800237,
-  };
-  store.dispatch(startAddPost(postData)).then(() => {
-    const actions = store.getActions();
-    expect(actions[0]).toEqual({
-      type: "ADD_POST",
-      post: {
-        id: expect.any(String),
-        ...postData,
-      },
-    });
-    done();
-    //return database.ref(`posts/${actions[0].post.id}`).once("value");
-  });
-  // .then((snapshot) => {
-  //   expect(snapshot.val()).toEqual(postData);
-  //   done();
-  // });
-});
 
-test("should add post with default data to database and store", (done) => {
-  const store = mockStore({});
-  const postDefaults = {
-    title: "",
-    content: "",
-    imageLink: "",
-    createdAt: 0,
-  };
-  store.dispatch(startAddPost({})).then(() => {
-    const actions = store.getActions();
-    expect(actions[0]).toEqual({
-      type: "ADD_POST",
-      post: {
-        id: expect.any(String),
-        ...postDefaults,
-      },
-    });
-    done();
-    //return database.ref(`posts/${actions[0].post.id}`).once("value");
+test("should set up posts action object", () => {
+  const action = setPosts(posts);
+  expect(action).toEqual({
+    type: "SET_POSTS",
+    posts,
   });
-  // .then((snapshot) => {
-  //   expect(snapshot.val()).toEqual(postDefaults);
-  //   done();
-  // });
 });
+// testing async actions
+// commented out because test cases write directly to db
+// test("should add post to database and store", (done) => {
+//   const store = mockStore({});
+//   const postData = {
+//     title: "i hate writing tests",
+//     content:
+//       "writing tests for async actions is especially complex and annoying",
+//     imageLink: "https://unsplash.com/random",
+//     createdAt: 1459800237,
+//   };
+//   store.dispatch(startAddPost(postData)).then(() => {
+//     const actions = store.getActions();
+//     expect(actions[0]).toEqual({
+//       type: "ADD_POST",
+//       post: {
+//         id: expect.any(String),
+//         ...postData,
+//       },
+//     });
+//     done();
+//     //return database.ref(`posts/${actions[0].post.id}`).once("value");
+//   });
+//   // .then((snapshot) => {
+//   //   expect(snapshot.val()).toEqual(postData);
+//   //   done();
+//   // });
+// });
+
+// test("should add post with default data to database and store", (done) => {
+//   const store = mockStore({});
+//   const postDefaults = {
+//     title: "",
+//     content: "",
+//     imageLink: "",
+//     createdAt: 0,
+//   };
+//   store.dispatch(startAddPost({})).then(() => {
+//     const actions = store.getActions();
+//     expect(actions[0]).toEqual({
+//       type: "ADD_POST",
+//       post: {
+//         id: expect.any(String),
+//         ...postDefaults,
+//       },
+//     });
+//     done();
+//     //return database.ref(`posts/${actions[0].post.id}`).once("value");
+//   });
+//   // .then((snapshot) => {
+//   //   expect(snapshot.val()).toEqual(postDefaults);
+//   //   done();
+//   // });
+// });
 
 // test("should set up add post action object with default values", () => {
 //   const action = addPost();

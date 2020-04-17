@@ -14,6 +14,8 @@ const postsReducer = (state = [], action) => {
       return state.filter((post) => post.id !== action.id);
     default:
       return state;
+    case "SET_POSTS":
+      return action.posts;
   }
 };
 
