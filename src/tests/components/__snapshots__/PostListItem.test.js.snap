@@ -13,7 +13,7 @@ exports[`should correctly render component 1`] = `
     about anime
   </p>
   <small>
-    -259200000
+    29th December, 1969
   </small>
 </div>
 `;

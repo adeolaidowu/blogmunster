@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import AppRouter from "./routers/AppRouter";
+import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
+import "./firebase/firebase";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(

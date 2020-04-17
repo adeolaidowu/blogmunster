@@ -1,21 +1,33 @@
-import { v4 as uuidv4 } from "uuid";
+import database from "../firebase/firebase";
 
 //ADD_POST
-export const addPost = ({
-  title = "",
-  content = "",
-  imageLink = "",
-  createdAt = 0,
-} = {}) => ({
+export const addPost = (post) => ({
   type: "ADD_POST",
-  post: {
-    id: uuidv4(),
-    title,
-    content,
-    imageLink,
-    createdAt,
-  },
+  post,
 });
+
+export const startAddPost = (postData = {}) => {
+  return (dispatch) => {
+    const {
+      title = "",
+      content = "",
+      imageLink = "",
+      createdAt = 0,
+    } = postData;
+    const post = { title, content, imageLink, createdAt };
+    return database
+      .ref("posts")
+      .push(post)
+      .then((ref) => {
+        dispatch(
+          addPost({
+            id: ref.key,
+            ...post,
+          })
+        );
+      });
+  };
+};
 
 //EDIT_POST
 export const editPost = (id, updates) => ({

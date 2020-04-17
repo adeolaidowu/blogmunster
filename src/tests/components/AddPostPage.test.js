@@ -4,11 +4,13 @@ import toJSON from "enzyme-to-json";
 import { AddPostPage } from "../../components/AddPostPage";
 import posts from "../fixtures/posts";
 
-let addPost, history, wrapper;
+let startAddPost, history, wrapper;
 beforeEach(() => {
-  addPost = jest.fn();
+  startAddPost = jest.fn();
   history = { push: jest.fn() };
-  wrapper = shallow(<AddPostPage addPost={addPost} history={history} />);
+  wrapper = shallow(
+    <AddPostPage startAddPost={startAddPost} history={history} />
+  );
 });
 
 test("should render add post page correctly", () => {
@@ -17,6 +19,6 @@ test("should render add post page correctly", () => {
 
 test("should correctly handle submit", () => {
   wrapper.find("PostForm").prop("onSubmit")(posts[1]);
-  expect(addPost).toHaveBeenLastCalledWith(posts[1]);
+  expect(startAddPost).toHaveBeenLastCalledWith(posts[1]);
   expect(history.push).toHaveBeenLastCalledWith("/");
 });
