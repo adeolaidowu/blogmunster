@@ -6,11 +6,11 @@ import { startEditPost, startDeletePost } from "../actions/posts";
 export const EditPostPage = (props) => {
   const onSubmit = (post) => {
     props.startEditPost(props.post.id, post);
-    props.history.push("/");
+    props.history.push("/dashboard");
   };
   const onDelete = () => {
     props.startDeletePost({ id: props.post.id });
-    props.history.push("/");
+    props.history.push("/dashboard");
   };
   return (
     <div>

@@ -1,5 +1,20 @@
 import React from "react";
+import { connect } from "react-redux";
+import { startLogout } from "../actions/auth";
+import PostList from "./PostList";
+import PostFilters from "./PostFilters";
 
-const Dashboard = () => <div>This is my dashboard page</div>;
+export const Dashboard = ({ startLogout }) => (
+  <div>
+    <h1>My Dashboard</h1>
+    <button onClick={startLogout}>Logout</button>
+    <PostFilters />
+    <PostList />
+  </div>
+);
 
-export default Dashboard;
+const mapDispatchToProps = (dispatch) => ({
+  startLogout: () => dispatch(startLogout()),
+});
+
+export default connect(null, mapDispatchToProps)(Dashboard);
