@@ -7,7 +7,8 @@ export const addPost = (post) => ({
 });
 
 export const startAddPost = (postData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const {
       title = "",
       content = "",
@@ -16,8 +17,11 @@ export const startAddPost = (postData = {}) => {
     } = postData;
     const post = { title, content, imageLink, createdAt };
     return database
-      .ref("posts")
-      .push(post)
+      .ref(`posts`)
+      .push({
+        ...post,
+        uid,
+      })
       .then((ref) => {
         dispatch(
           addPost({
@@ -37,7 +41,7 @@ export const editPost = (id, updates) => ({
 });
 
 export const startEditPost = (id, updates) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(editPost(id, updates));
     database.ref(`posts/${id}`).update(updates);
   };
@@ -50,7 +54,7 @@ export const deletePost = ({ id } = {}) => ({
 });
 
 export const startDeletePost = ({ id } = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     database
       .ref(`posts/${id}`)
       .remove()
@@ -66,6 +70,7 @@ export const setPosts = (posts) => ({
   posts,
 });
 
+// get all posts to display on homepage
 export const startSetPosts = () => {
   return (dispatch) => {
     return database
@@ -80,6 +85,30 @@ export const startSetPosts = () => {
           });
         });
         dispatch(setPosts(posts));
+      });
+  };
+};
+
+//get all posts by a single user to display on user dashboard
+export const startSetUserPosts = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database
+      .ref(`posts`)
+      .once("value")
+      .then((snapshot) => {
+        const posts = [];
+        snapshot.forEach((childSnapshot) => {
+          posts.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val(),
+          });
+        });
+        const userPosts = [];
+        for (let post of posts) {
+          post.uid === uid && userPosts.push(post);
+        }
+        dispatch(setPosts(userPosts));
       });
   };
 };

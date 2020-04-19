@@ -6,7 +6,7 @@ import { startAddPost } from "../actions/posts";
 export const AddPostPage = (props) => {
   const onSubmit = (post) => {
     props.startAddPost(post);
-    props.history.push("/");
+    props.history.push("/dashboard");
   };
   return (
     <div>

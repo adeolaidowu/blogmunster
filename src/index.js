@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
-import { startSetPosts } from "./actions/posts";
+import { startSetPosts, startSetUserPosts } from "./actions/posts";
 import { login, logout } from "./actions/auth";
 import AppRouter, { history } from "./routers/AppRouter";
 import "react-dates/initialize";
@@ -31,18 +31,25 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById("root"));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    store.dispatch(startSetPosts()).then(() => {
+    store.dispatch(startSetUserPosts()).then(() => {
       console.log("signed in");
       renderApp();
       if (history.location.pathname === "/") {
         history.push("/dashboard");
       }
+      console.log(store.getState());
     });
   } else {
     store.dispatch(logout());
-    console.log("signed out");
-    renderApp();
-    history.push("/");
+    store.dispatch(startSetPosts()).then(() => {
+      renderApp();
+      history.push("/");
+      console.log("signed out");
+      console.log(store.getState());
+    });
+    // console.log("signed out");
+    // renderApp();
+    // history.push("/");
   }
 });
 

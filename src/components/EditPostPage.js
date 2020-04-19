@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import PostForm from "./PostForm";
 import { startEditPost, startDeletePost } from "../actions/posts";
 
@@ -14,6 +15,7 @@ export const EditPostPage = (props) => {
   };
   return (
     <div>
+      <NavLink to="/dashboard">Go back</NavLink>
       <h1>Edit Blog Post</h1>
       <PostForm post={props.post} onSubmit={onSubmit} />
       <button onClick={onDelete}>Delete</button>

@@ -5,9 +5,11 @@ import getVisiblePosts from "../selectors/visiblePosts";
 
 export const PostList = (props) => (
   <div>
-    {props.posts.map((post) => (
-      <PostListItem {...post} key={post.id} />
-    ))}
+    {props.posts.length === 0 ? (
+      <p>You have no blog posts</p>
+    ) : (
+      props.posts.map((post) => <PostListItem {...post} key={post.id} />)
+    )}
   </div>
 );
 
