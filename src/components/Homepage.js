@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { startLogin } from "../actions/auth";
 import PostList from "./PostList";
 import PostFilters from "./PostFilters";
+import Sidebar from "./Sidebar";
 
 export const Homepage = (props) => {
   return (
@@ -11,6 +12,7 @@ export const Homepage = (props) => {
       <button onClick={props.startLogin}>Login with Google</button>
       {<PostFilters />}
       {<PostList />}
+      <Sidebar />
     </div>
   );
 };

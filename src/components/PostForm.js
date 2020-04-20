@@ -93,14 +93,7 @@ class PostForm extends Component {
     this.setState(() => ({
       image,
     }));
-    console.log(e.target.value);
-  };
-
-  handleImageUpload = () => {
-    const uploadTask = storage
-      .ref()
-      .child(`images/${this.state.image.name}`)
-      .put(this.state.image);
+    const uploadTask = storage.ref().child(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -122,7 +115,37 @@ class PostForm extends Component {
     );
   };
 
+  // handleImageUpload = () => {
+  //   const uploadTask = storage
+  //     .ref()
+  //     .child(`images/${this.state.image.name}`)
+  //     .put(this.state.image);
+  //   uploadTask.on(
+  //     "state_changed",
+  //     (snapshot) => {
+  //       const progress =
+  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //       console.log("Upload is " + progress + "% done");
+  //     },
+  //     (error) => {
+  //       console.log("error", error);
+  //     },
+  //     () => {
+  //       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+  //         this.setState(() => ({
+  //           imageLink: downloadURL,
+  //         }));
+  //         console.log("File available at", downloadURL);
+  //       });
+  //     }
+  //   );
+  // };
+
   render() {
+    let imageText;
+    this.props.post && this.props.post.imageLink
+      ? (imageText = "Change Image")
+      : (imageText = "Add Image");
     return (
       <form onSubmit={this.handleSubmit}>
         {this.state.error && <p>{this.state.error}</p>}
@@ -142,15 +165,15 @@ class PostForm extends Component {
         <input
           type="file"
           id="imageInput"
-          //hidden="hidden"
+          hidden="hidden"
           onChange={this.handleImageChange}
         />
         <button type="button" onClick={this.handleFileInput}>
-          Add Image
+          {imageText}
         </button>
-        <button type="button" onClick={this.handleImageUpload}>
+        {/* <button type="button" onClick={this.handleImageUpload}>
           Upload Image
-        </button>
+        </button> */}
         <button>Post</button>
       </form>
     );

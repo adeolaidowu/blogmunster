@@ -4,6 +4,7 @@ import { startLogout } from "../actions/auth";
 import { NavLink } from "react-router-dom";
 import PostList from "./PostList";
 import PostFilters from "./PostFilters";
+import Sidebar from "./Sidebar";
 
 export const Dashboard = ({ startLogout }) => (
   <div>
@@ -12,6 +13,7 @@ export const Dashboard = ({ startLogout }) => (
     <NavLink to="/create">Create New Post</NavLink>
     <PostFilters />
     <PostList />
+    <Sidebar />
   </div>
 );
 
