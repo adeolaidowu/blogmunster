@@ -5,7 +5,6 @@ import PostList from "./PostList";
 import PostFilters from "./PostFilters";
 
 export const Homepage = (props) => {
-  console.log(props.presentState);
   return (
     <div>
       <h1>Welcome to BlogMunster</h1>
@@ -16,11 +15,11 @@ export const Homepage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  presentState: state,
-});
+// const mapStateToProps = (state) => ({
+//   presentState: state,
+// });
 const mapDispatchToProps = (dispatch) => ({
   startLogin: () => dispatch(startLogin()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default connect(undefined, mapDispatchToProps)(Homepage);

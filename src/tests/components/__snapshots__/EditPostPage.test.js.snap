@@ -2,6 +2,11 @@
 
 exports[`should correctly render EditPostPage component 1`] = `
 <div>
+  <NavLink
+    to="/dashboard"
+  >
+    Go back
+  </NavLink>
   <h1>
     Edit Blog Post
   </h1>

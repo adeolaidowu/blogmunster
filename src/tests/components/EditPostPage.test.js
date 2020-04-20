@@ -28,11 +28,11 @@ test("should correctly handle editPost", () => {
   const newPost = { title: "new title" };
   wrapper.find("PostForm").prop("onSubmit")(newPost);
   expect(editPostSpy).toHaveBeenLastCalledWith(posts[2].id, newPost);
-  expect(historySpy.push).toHaveBeenLastCalledWith("/");
+  expect(historySpy.push).toHaveBeenLastCalledWith("/dashboard");
 });
 
 test("should correctly handle deletePost", () => {
   wrapper.find("button").simulate("click");
   expect(deletePostSpy).toHaveBeenLastCalledWith({ id: posts[2].id });
-  expect(historySpy.push).toHaveBeenLastCalledWith("/");
+  expect(historySpy.push).toHaveBeenLastCalledWith("/dashboard");
 });

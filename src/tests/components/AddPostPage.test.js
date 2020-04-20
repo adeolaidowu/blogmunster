@@ -20,5 +20,5 @@ test("should render add post page correctly", () => {
 test("should correctly handle submit", () => {
   wrapper.find("PostForm").prop("onSubmit")(posts[1]);
   expect(startAddPost).toHaveBeenLastCalledWith(posts[1]);
-  expect(history.push).toHaveBeenLastCalledWith("/");
+  expect(history.push).toHaveBeenLastCalledWith("/dashboard");
 });

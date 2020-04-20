@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { storage } from "../firebase/firebase";
 
 class PostForm extends Component {
   constructor(props) {
@@ -8,7 +9,10 @@ class PostForm extends Component {
       title: props.post ? props.post.title : "",
       content: props.post ? props.post.content : "",
       createdAt: props.post ? moment(props.post.createdAt) : moment(),
+      image: null,
+      imageLink: props.post ? props.post.imageLink : "",
       error: "",
+      fileInputChanged: false,
     };
   }
 
@@ -18,7 +22,7 @@ class PostForm extends Component {
   //     const value = e.target.value;
   //     return { id: value };
   //   });
-  // };
+  // };..
 
   handleTitleChange = (e) => {
     const title = e.target.value;
@@ -42,8 +46,80 @@ class PostForm extends Component {
         title: this.state.title,
         content: this.state.content,
         createdAt: this.state.createdAt.valueOf(),
+        imageLink: this.state.imageLink,
       });
     }
+  };
+
+  handleFileInput = () => {
+    const fileInput = document.getElementById("imageInput");
+    fileInput.click();
+  };
+
+  // handleImageChange = (e) => {
+  //   if (e.target.files[0]) {
+  //     const image = e.target.files[0];
+  //     this.setState(() => ({
+  //       image,
+  //     }));
+  //     const uploadTask = storage.ref(`images/${image.name}`).put(image);
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  // console.log('Upload is ' + progress + '% done');;
+  //       },
+  //       (error) => {
+  //         console.log("error", error);
+  //       },
+  //       () => {
+  //         storage
+  //           .ref("images")
+  //           .child(image.name)
+  //           .getDownloadURL()
+  //           .then((url) => {
+  //             this.setState(() => ({
+  //               imageLink: url,
+  //             }));
+  //             console.log("firebase url is", url);
+  //           });
+  //       }
+  //     );
+  //   }
+  // };
+
+  handleImageChange = (e) => {
+    const image = e.target.files[0];
+    this.setState(() => ({
+      image,
+    }));
+    console.log(e.target.value);
+  };
+
+  handleImageUpload = () => {
+    const uploadTask = storage
+      .ref()
+      .child(`images/${this.state.image.name}`)
+      .put(this.state.image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+      },
+      (error) => {
+        console.log("error", error);
+      },
+      () => {
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          this.setState(() => ({
+            imageLink: downloadURL,
+          }));
+          console.log("File available at", downloadURL);
+        });
+      }
+    );
   };
 
   render() {
@@ -63,6 +139,18 @@ class PostForm extends Component {
           value={this.state.content}
           onChange={this.handleContentChange}
         ></textarea>
+        <input
+          type="file"
+          id="imageInput"
+          //hidden="hidden"
+          onChange={this.handleImageChange}
+        />
+        <button type="button" onClick={this.handleFileInput}>
+          Add Image
+        </button>
+        <button type="button" onClick={this.handleImageUpload}>
+          Upload Image
+        </button>
         <button>Post</button>
       </form>
     );

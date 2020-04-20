@@ -7,6 +7,9 @@ export const PostItemPage = (props) => {
     <div>
       <Link to="/">Go back</Link>
       <h1>{props.post.title}</h1>
+      {props.post.imageLink && (
+        <img src={props.post.imageLink} alt="blog-img" />
+      )}
       <p>{props.post.content}</p>
       <small>{props.post.createdAt}</small>
     </div>
