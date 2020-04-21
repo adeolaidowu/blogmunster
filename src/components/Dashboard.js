@@ -1,16 +1,22 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PostList from "./PostList";
 import PostFilters from "./PostFilters";
 import Sidebar from "./Sidebar";
 
-export const Dashboard = ({ startLogout }) => (
-  <div>
-    <h1>My Dashboard</h1>
-    <NavLink to="/create">Create New Post</NavLink>
+export const Dashboard = () => (
+  <div className="dashboard">
+    <div className="dashboard__header">
+      <h1>My Dashboard</h1>
+      <Link className="button btn-primary" to="/create">
+        Create New Post
+      </Link>
+    </div>
     <PostFilters />
-    <PostList />
-    <Sidebar />
+    <div className="dashboard__content">
+      <PostList />
+      <Sidebar />
+    </div>
   </div>
 );
 

@@ -1,0 +1,18 @@
+.dashboard {
+  width: 100%;
+}
+
+.dashboard__header {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2rem 0;
+  h1 {
+    margin: 0;
+  }
+}
+
+.dashboard__content {
+  display: flex;
+}

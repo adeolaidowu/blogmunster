@@ -12,17 +12,10 @@ class PostForm extends Component {
       image: null,
       imageLink: props.post ? props.post.imageLink : "",
       error: "",
+      uploadProgress: props.post ? props.post.imageLink : "",
       fileInputChanged: false,
     };
   }
-
-  // handleChange = (e) => {
-  //   this.setState(() => {
-  //     const id = e.target.id;
-  //     const value = e.target.value;
-  //     return { id: value };
-  //   });
-  // };..
 
   handleTitleChange = (e) => {
     const title = e.target.value;
@@ -38,7 +31,7 @@ class PostForm extends Component {
     e.preventDefault();
     if (!this.state.title || !this.state.content) {
       this.setState(() => ({
-        error: "Please provide title and content",
+        error: "Please provide title and content*",
       }));
     } else {
       this.setState(() => ({ error: "" }));
@@ -56,42 +49,11 @@ class PostForm extends Component {
     fileInput.click();
   };
 
-  // handleImageChange = (e) => {
-  //   if (e.target.files[0]) {
-  //     const image = e.target.files[0];
-  //     this.setState(() => ({
-  //       image,
-  //     }));
-  //     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  // console.log('Upload is ' + progress + '% done');;
-  //       },
-  //       (error) => {
-  //         console.log("error", error);
-  //       },
-  //       () => {
-  //         storage
-  //           .ref("images")
-  //           .child(image.name)
-  //           .getDownloadURL()
-  //           .then((url) => {
-  //             this.setState(() => ({
-  //               imageLink: url,
-  //             }));
-  //             console.log("firebase url is", url);
-  //           });
-  //       }
-  //     );
-  //   }
-  // };
-
   handleImageChange = (e) => {
     const image = e.target.files[0];
     this.setState(() => ({
       image,
+      uploadProgress: "",
     }));
     const uploadTask = storage.ref().child(`images/${image.name}`).put(image);
     uploadTask.on(
@@ -100,6 +62,11 @@ class PostForm extends Component {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
+        if (progress === "100") {
+          this.setState(() => ({
+            uploadProgress: "done",
+          }));
+        }
       },
       (error) => {
         console.log("error", error);
@@ -115,66 +82,49 @@ class PostForm extends Component {
     );
   };
 
-  // handleImageUpload = () => {
-  //   const uploadTask = storage
-  //     .ref()
-  //     .child(`images/${this.state.image.name}`)
-  //     .put(this.state.image);
-  //   uploadTask.on(
-  //     "state_changed",
-  //     (snapshot) => {
-  //       const progress =
-  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //       console.log("Upload is " + progress + "% done");
-  //     },
-  //     (error) => {
-  //       console.log("error", error);
-  //     },
-  //     () => {
-  //       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-  //         this.setState(() => ({
-  //           imageLink: downloadURL,
-  //         }));
-  //         console.log("File available at", downloadURL);
-  //       });
-  //     }
-  //   );
-  // };
-
   render() {
     let imageText;
     this.props.post && this.props.post.imageLink
       ? (imageText = "Change Image")
       : (imageText = "Add Image");
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.state.error && <p>{this.state.error}</p>}
-        <input
-          type="text"
-          placeholder="Post title"
-          id="title"
-          value={this.state.title}
-          onChange={this.handleTitleChange}
-        />
-        <textarea
-          placeholder="Post content"
-          id="content"
-          value={this.state.content}
-          onChange={this.handleContentChange}
-        ></textarea>
+      <form onSubmit={this.handleSubmit} className="form">
+        {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <div className="form-group">
+          <label htmlFor="title">Post Title*</label>
+          <input
+            type="text"
+            placeholder="Post title"
+            id="title"
+            value={this.state.title}
+            onChange={this.handleTitleChange}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="content">Post content*</label>
+          <textarea
+            className="form-control"
+            placeholder="Post content"
+            id="content"
+            value={this.state.content}
+            onChange={this.handleContentChange}
+          ></textarea>
+        </div>
         <input
           type="file"
           id="imageInput"
           hidden="hidden"
           onChange={this.handleImageChange}
         />
-        <button type="button" onClick={this.handleFileInput}>
+        <button
+          className="button btn-secondary"
+          type="button"
+          onClick={this.handleFileInput}
+        >
           {imageText}
         </button>
-        {/* <button type="button" onClick={this.handleImageUpload}>
-          Upload Image
-        </button> */}
-        <button>Post</button>
+        <button className="button btn-primary">Post</button>
       </form>
     );
   }

@@ -32,7 +32,6 @@ export class PostFilters extends Component {
           value={this.props.filters.text}
         />
         <DateRangePicker
-          className="datepicker"
           startDate={this.props.filters.startDate}
           startDateId={"1"}
           endDate={this.props.filters.endDate}

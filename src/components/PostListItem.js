@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 
 const PostListItem = ({ id, title, content, imageLink, createdAt }) => {
   let path = "edit";
+  let actionText = "Edit post";
   if (history.location.pathname === "/") {
     path = "post";
+    actionText = "Read more";
   }
   return (
     <div className="home-post-item text-center">
@@ -17,7 +19,8 @@ const PostListItem = ({ id, title, content, imageLink, createdAt }) => {
         <img className="home-post-item__img" src={imageLink} alt="blog-img" />
       )}
       <p>
-        {content.slice(0, 100)}... <Link to={`/${path}/${id}`}>Read more</Link>
+        {content.slice(0, 100)}...{" "}
+        <Link to={`/${path}/${id}`}>{actionText}</Link>
       </p>
       <small>{moment(createdAt).format("Do MMMM, YYYY")}</small>
       <hr />

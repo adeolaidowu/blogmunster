@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PostForm from "./PostForm";
 import { startEditPost, startDeletePost } from "../actions/posts";
 
@@ -14,11 +14,17 @@ export const EditPostPage = (props) => {
     props.history.push("/dashboard");
   };
   return (
-    <div>
-      <NavLink to="/dashboard">Go back</NavLink>
+    <div className="page-container">
+      <div className="page-header">
+        <Link to="/dashboard" className="button">
+          Dashboard
+        </Link>
+        <button className="button btn-danger" onClick={onDelete}>
+          Delete Post
+        </button>
+      </div>
       <h1>Edit Blog Post</h1>
       <PostForm post={props.post} onSubmit={onSubmit} />
-      <button onClick={onDelete}>Delete</button>
     </div>
   );
 };
