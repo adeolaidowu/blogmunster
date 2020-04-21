@@ -8,6 +8,7 @@ import AppRouter, { history } from "./routers/AppRouter";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { firebase } from "./firebase/firebase";
+import "./styles/styles.scss";
 import * as serviceWorker from "./serviceWorker";
 
 const store = configureStore();
@@ -37,19 +38,14 @@ firebase.auth().onAuthStateChanged((user) => {
       if (history.location.pathname === "/") {
         history.push("/dashboard");
       }
-      console.log(store.getState());
     });
   } else {
     store.dispatch(logout());
     store.dispatch(startSetPosts()).then(() => {
       renderApp();
-      history.push("/");
+      //history.push("/");
       console.log("signed out");
-      console.log(store.getState());
     });
-    // console.log("signed out");
-    // renderApp();
-    // history.push("/");
   }
 });
 

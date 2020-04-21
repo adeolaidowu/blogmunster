@@ -1,17 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export const PostItemPage = (props) => {
   return (
-    <div>
-      <Link to="/">Go back</Link>
-      <h1>{props.post.title}</h1>
+    <div className="item-page-container">
+      <Link className="button button--alt" to="/">
+        Back to Homepage
+      </Link>
+      <h1 className="text-center">{props.post.title}</h1>
       {props.post.imageLink && (
         <img src={props.post.imageLink} alt="blog-img" />
       )}
       <p>{props.post.content}</p>
-      <small>{props.post.createdAt}</small>
+      <small>
+        Posted on {moment(props.post.createdAt).format("Do MMMM, YYYY")}
+      </small>
     </div>
   );
 };

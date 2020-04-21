@@ -22,15 +22,17 @@ export class PostFilters extends Component {
 
   render() {
     return (
-      <div>
+      <div className="filters">
         <input
           type="text"
           id="text"
-          placeholder="Search by title"
+          className="searchbox"
+          placeholder="Search By Title"
           onChange={this.handleTextChange}
           value={this.props.filters.text}
         />
         <DateRangePicker
+          className="datepicker"
           startDate={this.props.filters.startDate}
           startDateId={"1"}
           endDate={this.props.filters.endDate}

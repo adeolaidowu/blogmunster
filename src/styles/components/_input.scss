@@ -1,0 +1,28 @@
+.searchbox {
+  @include input;
+  padding: 1.5rem;
+  margin-right: 2rem;
+}
+
+.filters {
+  text-align: right;
+  padding-right: 2.5rem;
+}
+
+.signup {
+  @include input;
+  padding: 1.2rem;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .DateRangePickerInput {
+    display: none;
+  }
+  .searchbox {
+    padding: 0.8rem;
+    margin: 0;
+  }
+  .filters {
+    text-align: center;
+  }
+}

@@ -3,7 +3,7 @@ import Newsletter from "./Newsletter";
 import Advertisement from "./Advertisement";
 
 const Sidebar = () => (
-  <div>
+  <div className="sidebar">
     <Newsletter />
     <Advertisement />
   </div>

@@ -1,0 +1,23 @@
+.header {
+  background-color: #197278;
+}
+
+.header__content {
+  display: flex;
+  padding: $s-size;
+  justify-content: space-between;
+}
+
+.header__title {
+  color: #fff;
+  text-decoration: none;
+  h1 {
+    margin: 0;
+  }
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .header__content {
+    justify-content: space-around;
+  }
+}

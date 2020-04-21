@@ -1,27 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
-import { startLogin } from "../actions/auth";
 import PostList from "./PostList";
 import PostFilters from "./PostFilters";
 import Sidebar from "./Sidebar";
 
-export const Homepage = (props) => {
+export const Homepage = () => {
   return (
-    <div>
-      <h1>Welcome to BlogMunster</h1>
-      <button onClick={props.startLogin}>Login with Google</button>
-      {<PostFilters />}
-      {<PostList />}
-      <Sidebar />
+    <div className="main-container">
+      <h1 className="main-container__title text-center">
+        Welcome to BlogMunster
+      </h1>
+      <hr />
+      <PostFilters />
+      <div className="main-content">
+        <PostList />
+        <Sidebar />
+      </div>
     </div>
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   presentState: state,
-// });
-const mapDispatchToProps = (dispatch) => ({
-  startLogin: () => dispatch(startLogin()),
-});
-
-export default connect(undefined, mapDispatchToProps)(Homepage);
+export default Homepage;

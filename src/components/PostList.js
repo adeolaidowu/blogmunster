@@ -4,7 +4,7 @@ import PostListItem from "./PostListItem";
 import getVisiblePosts from "../selectors/visiblePosts";
 
 export const PostList = (props) => (
-  <div>
+  <div className="postlist">
     {props.posts.length === 0 ? (
       <p>You have no blog posts</p>
     ) : (

@@ -8,17 +8,19 @@ const PostListItem = ({ id, title, content, imageLink, createdAt }) => {
   if (history.location.pathname === "/") {
     path = "post";
   }
-  setTimeout(() => {
-    console.log(imageLink);
-  }, 3000);
   return (
-    <div>
-      <h2>
-        <Link to={`/${path}/${id}`}>{title}</Link>
-      </h2>
-      <p>{content}</p>
-      {imageLink && <img src={imageLink} alt="blog-img" />}
+    <div className="home-post-item text-center">
+      <Link className="home-post-item__title" to={`/${path}/${id}`}>
+        <h2>{title}</h2>
+      </Link>
+      {imageLink && (
+        <img className="home-post-item__img" src={imageLink} alt="blog-img" />
+      )}
+      <p>
+        {content.slice(0, 100)}... <Link to={`/${path}/${id}`}>Read more</Link>
+      </p>
       <small>{moment(createdAt).format("Do MMMM, YYYY")}</small>
+      <hr />
     </div>
   );
 };

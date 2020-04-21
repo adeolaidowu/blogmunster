@@ -1,0 +1,30 @@
+.button {
+  border: none;
+  background-color: #197278;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+  padding: 0 2rem;
+}
+
+.signupbutton:hover {
+  background-color: lighten($color: #197278, $amount: 10);
+}
+
+.button--alt {
+  background-color: transparent;
+  color: #197278;
+}
+
+.button--danger {
+  background-color: darken(#197278, 5);
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .button {
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    background-color: complement($color: #b80808);
+  }
+}

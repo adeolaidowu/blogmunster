@@ -1,0 +1,37 @@
+.content-container {
+  max-width: 90vw;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main-container {
+  @extend .content-container;
+  max-width: 80vw;
+  margin-top: 5rem;
+  //padding-right: 5rem;
+}
+
+.main-container__title {
+  color: #197278;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+.item-page-container {
+  max-width: 70vw;
+  margin: auto;
+  padding: 3rem;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .main-content {
+    flex-direction: column;
+  }
+  .item-page-container img {
+    width: 60%;
+  }
+}
