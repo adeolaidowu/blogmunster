@@ -13,6 +13,15 @@
   &:hover {
     background-color: lighten($color: #197278, $amount: 10);
   }
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background-color: dimgrey;
+    &:hover {
+      background-color: dimgrey;
+    }
+  }
 }
 .signupbutton {
   color: darken(#197278, 5);

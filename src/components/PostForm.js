@@ -12,8 +12,9 @@ class PostForm extends Component {
       image: null,
       imageLink: props.post ? props.post.imageLink : "",
       error: "",
-      uploadProgress: props.post ? props.post.imageLink : "",
+      uploadProgress: 0,
       fileInputChanged: false,
+      isButtonDisabled: false,
     };
   }
 
@@ -51,22 +52,21 @@ class PostForm extends Component {
 
   handleImageChange = (e) => {
     const image = e.target.files[0];
-    this.setState(() => ({
-      image,
-      uploadProgress: "",
-    }));
+    let progress;
+    // this.setState(() => ({
+    //   image,
+    //   uploadProgress: "",
+    // }));
     const uploadTask = storage.ref().child(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        progress = Math.floor(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        this.setState(() => ({ uploadProgress: progress }));
         console.log("Upload is " + progress + "% done");
-        if (progress === "100") {
-          this.setState(() => ({
-            uploadProgress: "done",
-          }));
-        }
+        this.setState(() => ({ isButtonDisabled: true }));
       },
       (error) => {
         console.log("error", error);
@@ -77,6 +77,7 @@ class PostForm extends Component {
             imageLink: downloadURL,
           }));
           console.log("File available at", downloadURL);
+          this.setState(() => ({ isButtonDisabled: false }));
         });
       }
     );
@@ -117,6 +118,9 @@ class PostForm extends Component {
           hidden="hidden"
           onChange={this.handleImageChange}
         />
+        {this.state.uploadProgress !== 0 && (
+          <p>{`Upload is ${this.state.uploadProgress}% done`}</p>
+        )}
         <button
           className="button btn-secondary"
           type="button"
@@ -124,7 +128,12 @@ class PostForm extends Component {
         >
           {imageText}
         </button>
-        <button className="button btn-primary">Post</button>
+        <button
+          className="button btn-primary"
+          disabled={this.state.isButtonDisabled}
+        >
+          Post
+        </button>
       </form>
     );
   }
