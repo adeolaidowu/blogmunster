@@ -12,7 +12,7 @@ export const Header = ({ startLogin, startLogout, uid }) => {
             <h1>BLOGMUNSTER</h1>
           </Link>
           {uid ? (
-            <button className="button" onClick={startLogout}>
+            <button className="button button--alt" onClick={startLogout}>
               Logout
             </button>
           ) : (
