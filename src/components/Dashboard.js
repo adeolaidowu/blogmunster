@@ -15,7 +15,6 @@ export const Dashboard = () => (
     <PostFilters />
     <div className="dashboard__content">
       <PostList />
-      <Sidebar />
     </div>
   </div>
 );

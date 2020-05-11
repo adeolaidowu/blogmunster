@@ -6,6 +6,8 @@ const Sidebar = () => (
   <div className="sidebar">
     <Newsletter />
     <Advertisement />
+    <Advertisement />
+    <Advertisement />
   </div>
 );
 export default Sidebar;

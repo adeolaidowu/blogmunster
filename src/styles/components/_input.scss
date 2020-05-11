@@ -1,11 +1,13 @@
 .searchbox {
-  @include input;
-  padding: 1.5rem;
-  margin-right: 2rem;
+  font-weight: 300;
+  font-size: 1.8rem;
+  padding: 1.1rem;
+  margin: 0 4rem;
+  border: 1px solid #ccc;
 }
 
 .filters {
-  text-align: right;
+  text-align: center;
   padding-right: 2.5rem;
   margin-bottom: 3rem;
 }
@@ -20,8 +22,9 @@
     display: none;
   }
   .searchbox {
-    padding: 0.8rem;
+    padding: 0.5rem;
     margin: 0;
+    font-size: 1.3rem;
   }
   .filters {
     text-align: center;

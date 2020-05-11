@@ -1,5 +1,6 @@
 .header {
-  background-color: #197278;
+  background-color: #f4f2f2;
+  box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
 }
 
 .header__content {
@@ -9,15 +10,9 @@
 }
 
 .header__title {
-  color: #fff;
+  color: #333;
   text-decoration: none;
   h1 {
     margin: 0;
-  }
-}
-
-@media (max-width: $desktop-breakpoint) {
-  .header__content {
-    justify-content: space-around;
   }
 }

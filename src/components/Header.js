@@ -16,7 +16,7 @@ export const Header = ({ startLogin, startLogout, uid }) => {
               Logout
             </button>
           ) : (
-            <button className="button " onClick={startLogin}>
+            <button className="button" onClick={startLogin}>
               Login with Google
             </button>
           )}

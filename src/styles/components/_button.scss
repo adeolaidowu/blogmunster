@@ -10,16 +10,26 @@
   &:active {
     transform: scale(0.95);
   }
+  &:hover {
+    background-color: lighten($color: #197278, $amount: 10);
+  }
 }
-
+.signupbutton {
+  color: darken(#197278, 5);
+  background-color: #f7f7f7;
+}
 .signupbutton:hover {
-  background-color: lighten($color: #197278, $amount: 10);
+  transform: scale(1.05);
+  background-color: #f7f7f7;
 }
 
 .button--alt {
   background-color: transparent;
   padding: 1.5rem;
   color: #197278;
+  &:hover {
+    color: #f7f7f7;
+  }
 }
 
 .button--create {

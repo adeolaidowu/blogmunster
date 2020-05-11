@@ -18,11 +18,13 @@ const PostListItem = ({ id, title, content, imageLink, createdAt }) => {
       {imageLink && (
         <img className="home-post-item__img" src={imageLink} alt="blog-img" />
       )}
-      <p>
+      <p className="home-post-item__text">
         {content.slice(0, 100)}...{" "}
-        <Link to={`/${path}/${id}`}>{actionText}</Link>
+        <Link to={`/${path}/${id}`} className="link">
+          {actionText}
+        </Link>
       </p>
-      <small>{moment(createdAt).format("Do MMMM, YYYY")}</small>
+      <small>Posted on {moment(createdAt).format("Do MMMM, YYYY")}</small>
       <hr />
     </div>
   );

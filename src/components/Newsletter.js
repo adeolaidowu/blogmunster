@@ -6,7 +6,11 @@ const Newsletter = () => (
       <h2>Sign up for our Newsletter</h2>
     </div>
     <div className="newsletter__content">
-      <input className="signup" type="email" placeholder="Enter your Email" />
+      <input
+        className="newsletter__signup signup"
+        type="email"
+        placeholder="Enter your Email"
+      />
       <button className="button signupbutton">Sign up</button>
     </div>
   </div>

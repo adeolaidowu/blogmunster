@@ -9,14 +9,22 @@ export const PostItemPage = (props) => {
       <Link className="button button--alt" to="/">
         Back to Homepage
       </Link>
-      <h1 className="text-center">{props.post.title}</h1>
-      {props.post.imageLink && (
-        <img src={props.post.imageLink} alt="blog-img" />
-      )}
-      <p>{props.post.content}</p>
-      <small>
-        Posted on {moment(props.post.createdAt).format("Do MMMM, YYYY")}
-      </small>
+      <div className="item-page-container__content">
+        <h1 className="item-page-container__header text-center">
+          {props.post.title}
+        </h1>
+        {props.post.imageLink && (
+          <img
+            src={props.post.imageLink}
+            alt="blog-img"
+            className="item-page-container__img"
+          />
+        )}
+        <p className="item-page-container__text">{props.post.content}</p>
+        <small className="item-page-container__date">
+          Posted on {moment(props.post.createdAt).format("Do MMMM, YYYY")}
+        </small>
+      </div>
     </div>
   );
 };
