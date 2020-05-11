@@ -63,8 +63,12 @@
 }
 
 @media (max-width: $desktop-breakpoint) {
+  .main-container {
+    max-width: 100vw;
+  }
   .main-content {
     flex-direction: column;
+    border-top: 1px solid #f0eeee;
   }
   .item-page-container {
     &__img {
