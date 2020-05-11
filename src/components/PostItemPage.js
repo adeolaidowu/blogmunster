@@ -6,7 +6,7 @@ import moment from "moment";
 export const PostItemPage = (props) => {
   return (
     <div className="item-page-container">
-      <Link className="button button--alt" to="/">
+      <Link className="button" to="/">
         Back to Homepage
       </Link>
       <div className="item-page-container__content">
