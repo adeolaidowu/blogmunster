@@ -9,7 +9,7 @@
     "express": "^4.17.1",
     "firebase": "^7.14.0",
     "history": "^4.10.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dates": "^21.8.0",
